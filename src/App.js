@@ -1,48 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import PubNub from 'pubnub';
-import { PubNubProvider, usePubNub } from 'pubnub-react';
+import React from 'react';
+// import PubNub from 'pubnub';
+// import { PubNubProvider, usePubNub } from 'pubnub-react';
 import browser from 'browser-detect';
 
-const pubnub = new PubNub({
-  publishKey: 'pub-c-4fac54c2-de3f-4ce9-9975-c8d4c7223dbd',
-  subscribeKey: 'sub-c-8c20f8d0-a998-11eb-9cd5-b6e2b128ec2a',
-  uuid: 'sec-c-NTVjZTJjYzgtODFlNS00MTM1LWE3M2QtMzJmOGEwMDZiOTQ1'
-});
+// const pubnub = new PubNub({
+//   publishKey: 'pub-c-4fac54c2-de3f-4ce9-9975-c8d4c7223dbd',
+//   subscribeKey: 'sub-c-8c20f8d0-a998-11eb-9cd5-b6e2b128ec2a',
+//   uuid: 'sec-c-NTVjZTJjYzgtODFlNS00MTM1LWE3M2QtMzJmOGEwMDZiOTQ1'
+// });
 
 function App() {
   return (
-    <PubNubProvider client={pubnub}>
+    // <PubNubProvider client={pubnub}>
       <Chat />
-    </PubNubProvider>
+    // {/* </PubNubProvider> */}
   );
 }
 
 function Chat() {
-  const pubnub = usePubNub();
-  const [channels] = useState(['awesome-channel']);
-  const [messages, addMessage] = useState([]);
-  const [message, setMessage] = useState('');
+  // const pubnub = usePubNub();
+  // const [channels] = useState(['awesome-channel']);
+  // const [messages, addMessage] = useState([]);
+  // const [message, setMessage] = useState('');
 
-  const handleMessage = event => {
-    const message = event.message;
-    if (typeof message === 'string' || message.hasOwnProperty('text')) {
-      const text = message.text || message;
-      addMessage(messages => [...messages, text]);
-    }
-  };
+  // const handleMessage = event => {
+  //   const message = event.message;
+  //   if (typeof message === 'string' || message.hasOwnProperty('text')) {
+  //     const text = message.text || message;
+  //     addMessage(messages => [...messages, text]);
+  //   }
+  // };
 
-  const sendMessage = message => {
-    if (message) {
-      pubnub
-        .publish({ channel: channels[0], message })
-        .then(() => setMessage(''));
-    }
-  };
+  // const sendMessage = message => {
+  //   if (message) {
+  //     pubnub
+  //       .publish({ channel: channels[0], message })
+  //       .then(() => setMessage(''));
+  //   }
+  // };
 
-  useEffect(() => {
-    pubnub.addListener({ message: handleMessage });
-    pubnub.subscribe({ channels });
-  }, [pubnub, channels]);
+  // useEffect(() => {
+  //   pubnub.addListener({ message: handleMessage });
+  //   pubnub.subscribe({ channels });
+  // }, [pubnub, channels]);
   const result = browser();
   debugger
   return (
@@ -136,19 +136,19 @@ const messageStyles = {
   padding: '8px 15px',
 };
 
-const footerStyles = {
-  display: 'flex',
-};
+// const footerStyles = {
+//   display: 'flex',
+// };
 
-const inputStyles = {
-  flexGrow: 1,
-  fontSize: '1.1rem',
-  padding: '10px 15px',
-};
+// const inputStyles = {
+//   flexGrow: 1,
+//   fontSize: '1.1rem',
+//   padding: '10px 15px',
+// };
 
-const buttonStyles = {
-  fontSize: '1.1rem',
-  padding: '10px 15px',
-};
+// const buttonStyles = {
+//   fontSize: '1.1rem',
+//   padding: '10px 15px',
+// };
 
 export default App;
