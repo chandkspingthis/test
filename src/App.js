@@ -44,6 +44,7 @@ function Chat() {
   //   pubnub.subscribe({ channels });
   // }, [pubnub, channels]);
   const result = browser();
+  let isActive = true;
   if(result["os"].includes("OS")){
     if(result["name"]){
       isActive = true;
@@ -73,10 +74,10 @@ function Chat() {
             );
           })} */}
 
-          <div>isActive: {isActive}</div>
-          <div>includes OS: {result["os"].includes("OS")}</div>
-          <div>name: {result["name"]}</div>
-          <div>name not equal to safari: {result["name"] !== "safari"}</div>
+          <div>{`isActive: ${isActive}`}</div>
+          <div>{`includes OS: ${result["os"].includes("OS")}`}</div>
+          <div>{`name: ${result["name"]}`}</div>
+          <div>{`name not equal to safari: ${result["name"] !== "safari"}`}</div>
 
 
 
