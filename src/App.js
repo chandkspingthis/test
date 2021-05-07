@@ -44,6 +44,20 @@ function Chat() {
   //   pubnub.subscribe({ channels });
   // }, [pubnub, channels]);
   const result = browser();
+  if(result["os"].includes("OS")){
+    if(result["name"]){
+      isActive = true;
+    } else {
+      isActive = false;
+    }
+
+  } else {
+    if(result["name"] !== "safari"){
+      isActive = true;
+    } else {
+      isActive = false;
+    }
+  }
   debugger
   return (
     <div style={pageStyles}>
@@ -58,6 +72,13 @@ function Chat() {
               </div>
             );
           })} */}
+
+          <div>isActive: {isActive}</div>
+          <div>includes OS: {result["os"].includes("OS")}</div>
+          <div>name: {result["name"]}</div>
+          <div>name not equal to safari: {result["name"] !== "safari"}</div>
+
+
 
 {Object.keys(result).map((key, value) => {
   debugger
