@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PubNub from 'pubnub';
 import { PubNubProvider, usePubNub } from 'pubnub-react';
+import browser from 'browser-detect';
 
 const pubnub = new PubNub({
   publishKey: 'pub-c-4fac54c2-de3f-4ce9-9975-c8d4c7223dbd',
@@ -42,21 +43,31 @@ function Chat() {
     pubnub.addListener({ message: handleMessage });
     pubnub.subscribe({ channels });
   }, [pubnub, channels]);
-
+  const result = browser();
+  debugger
   return (
     <div style={pageStyles}>
       <div style={chatStyles}>
         <div style={headerStyles}>React Chat Example</div>
+        
         <div style={listStyles}>
-          {messages.map((message, index) => {
+          {/* {messages.map((message, index) => {
             return (
               <div key={`message-${index}`} style={messageStyles}>
                 {message}
               </div>
             );
+          })} */}
+
+{Object.keys(result).map((key, value) => {
+            return (
+              <div style={messageStyles}>
+                {`${key} : ${value}`}
+              </div>
+            );
           })}
         </div>
-        <div style={footerStyles}>
+        {/* <div style={footerStyles}>
           <input
             type="text"
             style={inputStyles}
@@ -77,7 +88,7 @@ function Chat() {
           >
             Send Message
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -94,8 +105,8 @@ const pageStyles = {
 const chatStyles = {
   display: 'flex',
   flexDirection: 'column',
-  height: '50vh',
-  width: '50%',
+  // height: '50vh',
+  // width: '50%',
 };
 
 const headerStyles = {
