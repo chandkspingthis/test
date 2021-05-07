@@ -60,9 +60,10 @@ function Chat() {
           })} */}
 
 {Object.keys(result).map((key, value) => {
+  debugger
             return (
               <div style={messageStyles}>
-                {`${key} : ${value}`}
+                {`${key} : ${result[key]}`}
               </div>
             );
           })}
